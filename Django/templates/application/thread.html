@@ -1,0 +1,41 @@
+{% extends 'index.html' %}
+{% block title %}
+    {{ Thread.thread_name }}
+{% endblock %}
+{% block content %}
+    <div class =board_intro>
+    <div class = menubar>
+        <form method="GET" action="" id="searchform" class="searchbar">
+        <input type="text" id="searchbar" name="search" placeholder="Поиск по треду" class=searchbar_form value="{{ Search }}" maxlength="50">
+        </form>
+        <a href="#" class =create_thread>Ответить в тред</a>
+        <div class=paginator>
+        {% if Comments.has_previous %}
+            <a class=pages href="?page=1"><</a>
+        {% endif %}
+        {% for num in Comments.paginator.page_range %}
+            {% if Comments.number == num %}
+                <a class=pages href="?page={{ num }}"><b>{{ num }}</b></a>
+            {% elif num > Comments.number|add:'-3' and num < Comments.number|add:'3'%}
+                <a class=pages href="?page={{ num }}">{{ num }}</a>
+            {% endif %}
+        {% endfor %}
+        {% if Comments.has_next %}
+            <a class=pages href="?page={{ Comments.paginator.num_pages }}">></a>
+        {% endif %}
+        </div>
+    </div>
+        <div class = board_container>
+                {% if Comments %}
+                    {% for i in Comments %}
+                        <a class = thread_click href="#">
+                        <div class=thread_text>{{ i.comment_text }}</div>
+                        </a>
+                        <div class=info>{{ i.pub_date }}, {{ i.id }}</div>
+                    {% endfor %}
+                {% else %}
+                    <div class=no_threads>Комментарии не найдены</div>
+                {% endif %}
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends 'index.html' %}
+{% block title %}
+    {{ Board.board_name }}
+{% endblock %}
+{% block content %}
+    <div class =board_intro>
+    <div class = menubar>
+    <form method="GET" action="" id="searchform" class="searchbar">
+        <input type="text" id="searchbar" name="search" placeholder="Поиск тредов" class=searchbar_form value="{{ Search }}" maxlength="50">
+    </form>
+        <a href="#" class =create_thread>Создать тред</a>
+        <div class=paginator>
+        {% if Threads.has_previous %}
+            <a class=pages href="?{% if Search %}search={{ Search }}&{% endif %}page=1"><</a>
+        {% endif %}
+        {% for num in Threads.paginator.page_range %}
+            {% if Threads.number == num %}
+                <a class=pages href="?{% if Search %}search={{ Search }}&{% endif %}page={{ num }}">
+                <b>{{ num }}</b></a>
+            {% elif num > Threads.number|add:'-3' and num < Threads.number|add:'3'%}
+                <a class=pages href="?{% if Search %}search={{ Search }}&{% endif %}page={{ num }}">{{ num }}</a>
+            {% endif %}
+        {% endfor %}
+        {% if Threads.has_next %}
+            <a class=pages href="?{% if Search %}search={{ Search }}&{% endif %}page={{ Threads.paginator.num_pages }}">></a>
+        {% endif %}
+        </div>
+    </div>
+        <div class = board_container>
+                {% if Threads %}
+                    {% for i in Threads %}
+                        <a class = thread_click href="{% url 'application:thread' i.id %}">
+                        <div class=thread_name>{{ i.short_ttl }}</div>
+                        <div class=thread_text>{{ i.short }}</div>
+                            {% if i.img == '0' %}
+                                <div class=thread_img_box>Нет изображения</div>
+                            {% else %}
+                               <div class=thread_img_box ><img src="{{ i.img.url }}" class=thread_img></div>
+                            {% endif %}
+                            <div class=info_box><div class="info">{{ i.pub_date }}, {{ i.id }}</div></div>
+                        </a>
+
+                    {% endfor %}
+                {% else %}
+                    <div class=no_threads>Треды не найдены</div>
+                {% endif %}
+        </div>
+    </div>
+{% endblock %}
