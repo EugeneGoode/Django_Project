@@ -8,7 +8,7 @@
         <form method="GET" action="" id="searchform" class="searchbar">
         <input type="text" id="searchbar" name="search" placeholder="Поиск по треду" class=searchbar_form value="{{ Search }}" maxlength="50">
         </form>
-        <a href="#" class =create_thread>Ответить в тред</a>
+        <a href="#" class =create_thread>Відповісти у тред</a>
         <div class=paginator>
         {% if Comments.has_previous %}
             <a class=pages href="?page=1"><</a>
@@ -34,7 +34,7 @@
                         <div class=info>{{ i.pub_date }}, {{ i.id }}</div>
                     {% endfor %}
                 {% else %}
-                    <div class=no_threads>Комментарии не найдены</div>
+                    <div class=no_threads>Комментарі не знайдені</div>
                 {% endif %}
         </div>
     </div>

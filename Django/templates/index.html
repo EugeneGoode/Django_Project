@@ -7,17 +7,17 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:300&display=swap" rel="stylesheet">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src= {% static "css\scripts.js" %} ></script>
-    <title> {% block title %} Политех {% endblock %} </title>
+    <title> {% block title %} Політех {% endblock %} </title>
 </head>
 <header class="header">
      <div class="container">
          <div class="inner_header">
              <a href={% url 'index' %} class='logo'><img src={% static "images\logo.png" %} width="1800px"  height="500px" class="logo" alt = "Politech"></a>
              <nav class="nav">
-                 <a class="link_nav" href="{% url 'application:boards' %}">Доски</a>
+                 <a class="link_nav" href="{% url 'application:boards' %}">Дошки</a>
                  <a class="link_nav" href="#">Правила</a>
-                 <a class="link_nav" href="#">Связь</a>
-                 <a class="nav_btn" href="#">О проекте</a>
+                 <a class="link_nav" href="#">Зв'язок</a>
+                 <a class="nav_btn" href="#">Про проєкт</a>
              </nav>
          </div>
      </div>
@@ -25,9 +25,9 @@
 {% block content %}
 <div class="intro">
     <div class="container">
-        <h1 class="intro_title">Приветствую на Политехе,</h1>
-        <h2 class="intro_subtitle">анонимном форуме для студентов КПИ</h2>
-        <a class=" = intro_button" href={% url 'application:boards' %}>Доски</a>
+        <h1 class="intro_title">Вітаю на Політесі,</h1>
+        <h2 class="intro_subtitle">анонімному форумі для студентів КПІ</h2>
+        <a class=" = intro_button" href={% url 'application:boards' %}>Дошки</a>
     </div>
 </div>
 {% endblock %}

@@ -3,21 +3,21 @@ from django.utils import timezone
 import datetime
 
 class Board(models.Model):
-    board_name = models.CharField('Название доски', max_length = 200)
-    board_path = models.CharField('Путь к доске', max_length = 200)
+    board_name = models.CharField('Назва дошки', max_length = 200)
+    board_path = models.CharField('Путь до дошки', max_length = 200)
     class Meta:
-        verbose_name = "Доска"
-        verbose_name_plural = "Доски"
+        verbose_name = "Дошка"
+        verbose_name_plural = "Дошки"
 
     def __str__(self):
         return self.board_name
 
 class Thread(models.Model):
     board = models.ForeignKey(Board, on_delete = models.CASCADE)
-    thread_title = models.CharField('Название треда', max_length = 100)
-    thread_text = models.TextField('Текст треда')
-    pub_date = models.DateTimeField('Дата публикации')
-    img = models.ImageField('Изображение', default = 0, null=True, blank=True)
+    thread_title = models.CharField('Назва треду', max_length = 100)
+    thread_text = models.TextField('Текст треду')
+    pub_date = models.DateTimeField('Дата публикації')
+    img = models.ImageField('Зображення', default = 0, null=True, blank=True)
     thread_id = id
 
     def __str__(self):
@@ -44,18 +44,18 @@ class Thread(models.Model):
 
     class Meta:
         verbose_name = "Тред"
-        verbose_name_plural = "Треды"
+        verbose_name_plural = "Треди"
 
 
 class Comment(models.Model):
     thread = models.ForeignKey(Thread, on_delete = models.CASCADE)
-    comment_text = models.CharField('Текст комментария', max_length = 200)
-    pub_date = models.DateTimeField('Дата публикации')
+    comment_text = models.CharField('Текст комментаря', max_length = 200)
+    pub_date = models.DateTimeField('Дата публикації')
     comment_id = id
 
     def __str__(self):
         return self.comment_text
 
     class Meta:
-        verbose_name = "Комментарий"
-        verbose_name_plural = "Комментарии"
+        verbose_name = "Коментар"
+        verbose_name_plural = "Коментарі"
